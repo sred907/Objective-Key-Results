@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from "prop-types";
+
 import Freeze from "../Freeze";
 
 import {ItemsContainer, Heading} from "../../commonStyles";
@@ -267,5 +269,10 @@ class List extends React.Component {
         );
     }
 }
+
+List.propTypes = {
+    filteredData: PropTypes.array,
+    loading: PropTypes.bool
+};
 
 export default List;

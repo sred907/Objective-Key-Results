@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 import Freeze from "../Freeze";
 
@@ -108,6 +109,11 @@ class Filters extends React.Component {
         );
     }
 }
+
+Filters.propTypes = {
+    filters: PropTypes.array,
+    loading: PropTypes.bool
+};
 
 const mapStateToProps = (state)=>{
     return {

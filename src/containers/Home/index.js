@@ -32,10 +32,6 @@ const ResultsContainer = styled.div`
     }
 `;
 
-const FilterModal = styled.div`
-
-`;
-
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -112,10 +108,10 @@ class Home extends Component {
             <ResultsContainer>
                 <Filters
                     filters={this.state.filters}
-                    loading={this.state.loading}
-                    toggleFiltersModal={this.toggleFiltersModal}
-                    isFilterModalOpen={this.state.isFilterModalOpen}/>
-                <List filteredData={this.props.filteredData} loading={this.state.loading}/>
+                    loading={this.state.loading}/>
+                <List
+                    filteredData={this.props.filteredData}
+                    loading={this.state.loading}/>
             </ResultsContainer>
         );
     }
