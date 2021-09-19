@@ -46,7 +46,17 @@ const ListContainer = styled.div`
                 .close {
                     text-align: right;
                     padding: 15px 30px;
-                    font-size: 30px;
+                    font-size: 22px;
+                    display: inline-block;
+                    left: 238px;
+                    position: relative;
+                }
+
+                .title {
+                    text-align: center;
+                    padding: 15px;
+                    font-size: 15px;
+                    display: inline-block;
                 }
 
                 .detailRow {
@@ -221,7 +231,7 @@ class List extends React.Component {
                             return (
                                 <Parent key={i} className={closedIds.indexOf(item.data.id) > -1 ? "isClosed" : ""}>
                                     <div className="parentTitleCont">
-                                        <div className="parentTitle" onClick={() => this.showDetails(item)}>{item.data.title}</div>
+                                        <div className="parentTitle" onClick={() => this.showDetails(item)}>{i + 1}.&nbsp;&nbsp;&nbsp;{item.data.title}</div>
                                         <div className="dropDown" onClick={() => this.elementClicked(item.data.id)}>
                                             {item.children.length ? <div className="arrow"></div> : null}
                                         </div>
@@ -231,7 +241,7 @@ class List extends React.Component {
                                             <div className="childList">
                                                 {
                                                     item.children.map((child, j) => {
-                                                        return <Child key={j} onClick={() => this.showDetails(child)}>{j+1}.&nbsp;&nbsp;&nbsp;{child.data.title}</Child>
+                                                        return <Child key={j} onClick={() => this.showDetails(child)}>{String.fromCharCode(97 + j)}.&nbsp;&nbsp;&nbsp;{child.data.title}</Child>
                                                     })
                                                 }
                                             </div>
@@ -250,11 +260,14 @@ class List extends React.Component {
                         <div className="overlay">
                             <div className="modalContainer">
                                 <div className="modalContent">
-                                    <div className="close" onClick={() => this.showDetails()}>&#x2715;</div>
+                                    <div>
+                                        <div className="title">{selectedItem.data.title}</div>
+                                        <div className="close" onClick={() => this.showDetails()}>&#x2715;</div>
+                                    </div>
                                     {
                                         Object.keys(selectedItem.data).map((el, i) => {
                                             return (
-                                                selectedItem.data[el] && <div className="detailRow" key={i}>
+                                                el !== "title" && <div className="detailRow" key={i}>
                                                     {`${el}: ${selectedItem.data[el]}`}
                                                 </div>
                                             );
